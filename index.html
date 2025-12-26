@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimsum TS Boom - Official Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary: #8B0000; /* Merah Maroon dari Logo */
+            --accent: #d35400;  /* Oranye Dimsum */
+            --gold: #f1c40f;    /* Kuning aksen */
+            --bg: #fffbf0;      /* Krem lembut */
+            --white: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden; /* Mencegah scroll samping */
+        }
+
+        /* --- 1. SPLASH SCREEN (ANIMASI PEMBUKA) --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary); /* Latar Merah Maroon */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999; /* Pastikan di paling atas */
+            transition: opacity 1s ease-out, visibility 1s;
+        }
+
+        .splash-logo {
+            width: 200px; /* Ukuran Logo */
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            /* Animasi Berputar 3D (Y-Axis) */
+            animation: spinHorizontal 2s infinite ease-in-out; 
+        }
+
+        .splash-text {
+            color: var(--white);
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s; /* Muncul perlahan */
+        }
+
+        /* Definisi Animasi Putar Samping */
+        @keyframes spinHorizontal {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Class untuk menghilangkan splash screen */
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* --- 2. HEADER & HERO --- */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .logo-header {
+            width: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        /* --- 3. KONTEN MENU --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .card-img-wrapper {
+            height: 220px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+
+        .price-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            color: #666;
+        }
+
+        .price-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 4px;
+        }
+
+        .price-list span {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .btn-order {
+            margin-top: auto;
+            background-color: #25D366; /* Hijau WA */
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-order:hover {
+            background-color: #1ebc57;
+        }
+
+        /* --- 4. FOOTER & INSTAGRAM --- */
+        footer {
+            background-color: var(--text);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .social-box {
+            margin-bottom: 20px;
+        }
+
+        .btn-ig {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .btn-ig:hover {
+            transform: scale(1.05);
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <img src="logo.png" alt="Logo Dimsum TS Boom" class="splash-logo">
+        <div class="splash-text">Selamat Datang...</div>
+    </div>
+
+    <header>
+        <img src="logo.png" alt="Logo Kecil" class="logo-header">
+        <h1>Dimsum TS Boom</h1>
+        <p>Makan Dimsum, Perut Tersenyum! (100% Halal)</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Mau Ngemil Apa Hari Ini?</h2>
+        
+        <div class="menu-grid" id="menuContainer">
+            </div>
+    </div>
+
+    <footer>
+        <div class="social-box">
+            <p>Ikuti Keseruan Kami di Instagram:</p>
+            <a href="https://www.instagram.com/dimsum_ts_boom?igsh=bW9jMDlnNzM3djR6" target="_blank" class="btn-ig">
+                <i class="fab fa-instagram"></i> Follow @dimsum_ts_boom
+            </a>
+        </div>
+        <p>Alamat & Kontak: 0812-2573-9080</p>
+        <p>&copy; 2025 Dimsum TS Boom. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // --- A. DATA MENU ---
+        const menuItems = [
+            {
+                name: "Dimsum Ori",
+                prices: { "Isi 4": "12k", "Isi 6": "18k", "Isi 8": "24k" },
+                imgUrl: "ori.png",
+                note: "Best Seller"
+            },
+            {
+                name: "Dimsum Mentai",
+                prices: { "Isi 4": "14k", "Isi 6": "21k", "Isi 8": "28k" },
+                imgUrl: "mentai.png",
+                note: "Pedas Creamy"
+            },
+            {
+                name: "Dimsum Mentai Cheese",
+                prices: { "Isi 4": "16k", "Isi 6": "24k", "Isi 8": "32k" },
+                imgUrl: "mentaikeju.png",
+                note: "Keju Lumer"
+            },
+            {
+                name: "Dimsum Bakar",
+                prices: { "Isi 4": "15k", "Isi 6": "23k", "Isi 8": "30k" },
+                imgUrl: "bakar.png",
+                note: "Aroma Smokey"
+            },
+            {
+                name: "Dimsum Bakar Mentai",
+                prices: { "Isi 4": "17k", "Isi 6": "25k", "Isi 8": "33k" },
+                imgUrl: "mentaibakar.png",
+                note: "Special"
+            },
+            {
+                name: "Dimsum Goreng Keju",
+                prices: { "Isi 4": "16k", "Isi 6": "26k", "Isi 8": "34k" },
+                imgUrl: "gorengkeju.png",
+                note: "Garing!"
+            }
+        ];
+
+        const waNumber = "6281225739080";
+
+        // --- B. LOGIKA RENDER MENU ---
+        function renderMenu() {
+            const container = document.getElementById('menuContainer');
+            
+            menuItems.forEach(item => {
+                let priceHtml = '';
+                for (const [qty, price] of Object.entries(item.prices)) {
+                    priceHtml += `<li>${qty} <span>${price}</span></li>`;
+                }
+
+                const waMessage = `Halo kak, saya mau pesan *${item.name}*. Bisa dibantu?`;
+                const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
+
+                const cardHtml = `
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="${item.imgUrl}" alt="${item.name}" class="card-img">
+                            <div class="badge">${item.note}</div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">${item.name}</h3>
+                            <ul class="price-list">
+                                ${priceHtml}
+                            </ul>
+                            <a href="${waLink}" target="_blank" class="btn-order">
+                                <i class="fab fa-whatsapp"></i> Pesan via WA
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        // --- C. LOGIKA SPLASH SCREEN (ANIMASI) ---
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash-screen');
+            
+            // Biarkan animasi berputar selama 2.5 detik, lalu hilangkan
+            setTimeout(() => {
+                splash.classList.add('hidden');
+            }, 2500); // 2500 ms = 2.5 detik
+        });
+
+        renderMenu();
+    </script>
+</body>
+</html>
