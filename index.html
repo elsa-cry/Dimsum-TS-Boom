@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- CSS VARIABLES --- */
+        /* CSS VARIABLES */
         :root {
-            --primary: #8B0000; /* Merah Maroon dari Logo */
-            --accent: #d35400;  /* Oranye Dimsum */
-            --gold: #f1c40f;    /* Kuning aksen */
-            --bg: #fffbf0;      /* Krem lembut */
+            --primary: #8B0000; 
+            --accent: #d35400;  
+            --gold: #f1c40f;    
+            --bg: #fffbf0;      
             --white: #ffffff;
             --text: #333333;
         }
@@ -24,31 +24,30 @@
             padding: 0;
             background-color: var(--bg);
             color: var(--text);
-            overflow-x: hidden; /* Mencegah scroll samping */
+            overflow-x: hidden; 
         }
 
-        /* --- 1. SPLASH SCREEN (ANIMASI PEMBUKA) --- */
+        /* 1. SPLASH SCREEN (ANIMASI PEMBUKA) */
         #splash-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--primary); /* Latar Merah Maroon */
+            background: var(--primary); 
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            z-index: 9999; /* Pastikan di paling atas */
+            z-index: 9999; 
             transition: opacity 1s ease-out, visibility 1s;
         }
 
         .splash-logo {
-            width: 200px; /* Ukuran Logo */
+            width: 200px; 
             height: 200px;
             border-radius: 50%;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            /* Animasi Berputar 3D (Y-Axis) */
             animation: spinHorizontal 2s infinite ease-in-out; 
         }
 
@@ -59,10 +58,9 @@
             font-weight: bold;
             letter-spacing: 2px;
             opacity: 0;
-            animation: fadeIn 1s forwards 0.5s; /* Muncul perlahan */
+            animation: fadeIn 1s forwards 0.5s; 
         }
-
-        /* Definisi Animasi Putar Samping */
+        
         @keyframes spinHorizontal {
             0% { transform: rotateY(0deg); }
             100% { transform: rotateY(360deg); }
@@ -72,13 +70,12 @@
             to { opacity: 1; }
         }
 
-        /* Class untuk menghilangkan splash screen */
         .hidden {
             opacity: 0;
             visibility: hidden;
         }
 
-        /* --- 2. HEADER & HERO --- */
+        /* 2. HEADER & HERO */
         header {
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: var(--white);
@@ -110,7 +107,7 @@
             font-weight: 300;
         }
 
-        /* --- 3. KONTEN MENU --- */
+        /* 3. KONTEN MENU */
         .container {
             max-width: 1200px;
             margin: 40px auto;
@@ -223,7 +220,7 @@
 
         .btn-order {
             margin-top: auto;
-            background-color: #25D366; /* Hijau WA */
+            background-color: #25D366; 
             color: white;
             text-decoration: none;
             padding: 15px;
@@ -241,7 +238,7 @@
             background-color: #1ebc57;
         }
 
-        /* --- 4. FOOTER & INSTAGRAM --- */
+        /* 4. FOOTER & INSTAGRAM */
         footer {
             background-color: var(--text);
             color: white;
@@ -276,7 +273,7 @@
             font-size: 0.9rem;
         }
 
-        /* --- TAMBAHAN CSS UNTUK FOTO TOKO --- */
+        /* TAMBAHAN CSS UNTUK FOTO TOKO  */
         .location-section {
             margin: 30px 0;
             display: flex;
@@ -286,7 +283,7 @@
 
         .store-img {
             width: 100%;
-            max-width: 400px; /* Agar gambar tidak terlalu besar di layar lebar */
+            max-width: 400px; 
             height: auto;
             border-radius: 15px;
             border: 3px solid rgba(255, 255, 255, 0.3);
@@ -296,7 +293,7 @@
         }
 
         .store-img:hover {
-            transform: scale(1.02); /* Efek zoom sedikit saat hover */
+            transform: scale(1.02); 
             border-color: var(--gold);
         }
 
@@ -347,7 +344,7 @@
         <div class="location-section">
             <p>Kunjungi Outlet Kami:</p>
             <a href="https://maps.app.goo.gl/QcHjTYyGJRMV9QbU9" target="_blank" title="Klik untuk buka Peta">
-                <img src="toko.jpeg" alt="Lokasi Toko Dimsum TS Boom" class="store-img">
+                <img src="toko.png" alt="Lokasi Toko Dimsum TS Boom" class="store-img">
             </a>
             <a href="https://maps.app.goo.gl/QcHjTYyGJRMV9QbU9" target="_blank" class="map-link-text">
                 <i class="fas fa-map-marked-alt"></i> Lihat Lokasi di Google Maps
@@ -359,7 +356,7 @@
     </footer>
 
     <script>
-        // --- A. DATA MENU ---
+        // A. DATA MENU
         const menuItems = [
             {
                 name: "Dimsum Ori",
@@ -401,7 +398,7 @@
 
         const waNumber = "6281225739080";
 
-        // --- B. LOGIKA RENDER MENU ---
+        // B. LOGIKA RENDER MENU
         function renderMenu() {
             const container = document.getElementById('menuContainer');
             
@@ -435,11 +432,10 @@
             });
         }
 
-        // --- C. LOGIKA SPLASH SCREEN (ANIMASI) ---
+        // C. LOGIKA SPLASH SCREEN (ANIMASI)
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash-screen');
             
-            // Biarkan animasi berputar selama 2.5 detik, lalu hilangkan
             setTimeout(() => {
                 splash.classList.add('hidden');
             }, 2500); // 2500 ms = 2.5 detik
