@@ -275,6 +275,45 @@
             opacity: 0.7;
             font-size: 0.9rem;
         }
+
+        /* --- TAMBAHAN CSS UNTUK FOTO TOKO --- */
+        .location-section {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .store-img {
+            width: 100%;
+            max-width: 400px; /* Agar gambar tidak terlalu besar di layar lebar */
+            height: auto;
+            border-radius: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .store-img:hover {
+            transform: scale(1.02); /* Efek zoom sedikit saat hover */
+            border-color: var(--gold);
+        }
+
+        .map-link-text {
+            color: var(--gold);
+            text-decoration: none;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .map-link-text:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -304,8 +343,19 @@
                 <i class="fab fa-instagram"></i> Follow @dimsum_ts_boom
             </a>
         </div>
+
+        <div class="location-section">
+            <p>Kunjungi Outlet Kami:</p>
+            <a href="https://maps.app.goo.gl/QcHjTYyGJRMV9QbU9" target="_blank" title="Klik untuk buka Peta">
+                <img src="toko.jpeg" alt="Lokasi Toko Dimsum TS Boom" class="store-img">
+            </a>
+            <a href="https://maps.app.goo.gl/QcHjTYyGJRMV9QbU9" target="_blank" class="map-link-text">
+                <i class="fas fa-map-marked-alt"></i> Lihat Lokasi di Google Maps
+            </a>
+        </div>
+
         <p>Alamat & Kontak: 0812-2573-9080</p>
-        <p>&copy; 2025 Dimsum TS Boom. All Rights Reserved.</p>
+        <p>© 2025 Dimsum TS Boom. All Rights Reserved.</p>
     </footer>
 
     <script>
